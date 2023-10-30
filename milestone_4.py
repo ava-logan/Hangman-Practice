@@ -28,7 +28,7 @@ class Hangman:
             elif guess in list_of_guesses:
                 print("You have already tried that letter")
             elif guess.isalpha == True and len(guess) == 1:
-                check_guess(guess)
+                Hangman.check_guess(guess)
                 list_of_guesses.append(guess)
             else: 
                 print('Something went wrong with the input')
