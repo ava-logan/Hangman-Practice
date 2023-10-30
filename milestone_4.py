@@ -3,18 +3,17 @@ word_list = ['lemon', 'grape', 'banana', 'strawberry', 'kiwi']
 word = random.choice(word_list)
 
 class Hangman:
-    def __init__(self, words_list, num_lives=5):
-        self.word = word
+    def __init__(self, random_word, num_lives=5):
+        self.random_word = random_word
         self.word_guessed = list('-'*len(word))
         self.num_letters = len(word)
         self.num_lives = 5
-        self.word_list = word_list
         self.list_of_guesses = []
 
     def check_guess(self, guess):
-        if guess in word:
+        if guess in self.random_word:
             print(f'Good guess! {guess} is in the word')
-        elif guess not in word:
+        elif guess not in self.random_word:
             print(f'Sorry {guess} is not in the word')
         else: 
             print('Something went wrong with finding letter in word')
