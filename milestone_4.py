@@ -31,3 +31,10 @@ class Hangman:
                 self.list_of_guesses.append(guess)
             else: 
                 print('Something went wrong with the input')
+    
+    def what_went_wrong(self):
+        print(self.random_word)
+        print(self.word_guessed)
+        print(self.num_letters)
+        print(self.num_lives)
+        print(self.list_of_guesses) 
