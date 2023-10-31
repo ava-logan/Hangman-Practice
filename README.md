@@ -4,14 +4,20 @@
 1. Overview
 2. Methods
    a. Init
+   
    b. Find Indexes
+   
    c. Update Word guessed
+   
    d. Update Number of Letters
+   
    e. Check Guess
+   
    f. Ask For Input
+   
 3. Flow chart 
 
-##1. Overview 
+## 1. Overview 
 This is a program designed to play hangman. Firstly, a word is randomly chosen from a list. Them, the player is asked to input a letter which is passed through a class. Here, it is determined whether the letter is part of a random word. Approprite methods are run, which will be explained below, and the game continues until it is won. 
 
 ## 2. Methods
@@ -114,10 +120,10 @@ Plus:
 - The list of previous guesses has been updated
 - All the relevant changes are complied into a message for the user  
 
-##3. Flow diagram 
+## 3. Flow diagram 
 <img width="1440" alt="Screenshot 2023-10-31 at 22 28 33" src="https://github.com/ava-logan/Hangman-Practice/assets/148722602/5c08eed2-d595-41dd-bd07-2a019f69f41e">
 
-##4. Other things for a readme.file 
+## 4. Other things for a readme.file 
 - installation instructions
 - usage instructions
 - file structure
