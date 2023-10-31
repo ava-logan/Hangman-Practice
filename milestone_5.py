@@ -42,14 +42,14 @@ class Hangman:
     def win_lose_or_continue(self):
         if self.num_lives == 0:
             print(f'Game over! You have 0 lives left! The word was {self.random_word}')
-            return False
+            return "game_over"
         elif self.num_lives > 0 and self.num_letters == 0:
             print(f'You have won the game! Congratulations')
-            return False
+            return "game_over"
         elif self.num_lives > 0 and self.num_letters > 0:
             Hangman.ask_for_input(self)
             print(f'You have {self.num_lives} remaining')
-            print(f'You have so far guessed {self.list_of_guesses}')
+            print(f'Lives: {self.num_lives}, Word guessed fo far: {self.word_guessed}. Letters guessed: {self.list_of_guesses}')
             return True
         else:
             print('Something went wrong with the win/lose/continue method')
@@ -79,5 +79,7 @@ def play_game(another_word_list):
     game = Hangman(word_selector)
     while True:
         game.win_lose_or_continue()
+        if game.win_lose_or_continue == "game over":
+            break
 
 #play_game(another_word_list)
