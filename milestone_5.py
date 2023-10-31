@@ -12,20 +12,16 @@ class Hangman:
         self.guess_letter_index_list = []
 
     def find_indexes(self, guess):
-        print('finding indexes...')
         while guess in self.random_word:
             guess_index = self.random_word.index(guess)
             self.guess_letter_index_list.append(guess_index)
             self.random_word[guess_index] = '-'
 
     def update_hidden_word(self, guess):
-        print('revealing the new characters...')
         for numbers in self.guess_letter_index_list:
             self.word_guessed[numbers] = guess
-            print(numbers, self.word_guessed, guess)
 
     def update_num_letters(self, guess):
-        print('Changing the number of letters left to guess..')
         numbers = len(self.guess_letter_index_list)
         self.num_letters = self.num_letters - numbers
 
@@ -53,7 +49,7 @@ class Hangman:
             elif len(guess) == 1 and guess.isalpha() == True:
                 Hangman.check_guess(self, guess)       
                 self.list_of_guesses.append(guess)
-                print(f'Lives: {self.num_lives}. Letters guessed: {"".join(self.list_of_guesses)}. Word so far: {self.word_guessed}')
+                print(f'Lives: {self.num_lives}. Letters guessed: {"".join(self.list_of_guesses)}. Word so far: {"".join(self.word_guessed)}')
                 break
             else: 
                 print('Something went wrong with the input')
@@ -84,4 +80,4 @@ def play_game(another_word_list, game_num_lives):
 
 
 
-play_game(another_word_list, 3)
+#play_game(another_word_list, 3)
