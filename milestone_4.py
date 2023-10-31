@@ -14,6 +14,7 @@ class Hangman:
         guess = guess.lower()
         if guess in self.random_word:
             print(f'Good guess! {guess} is in the word')
+
         elif guess not in self.random_word:
             print(f'Sorry {guess} is not in the word')
         else: 
@@ -35,6 +36,7 @@ class Hangman:
     
     def what_went_wrong(self):
         print(self.random_word)
+        print(self.word_guessed[9])
         print(self.word_guessed)
         print(self.num_letters)
         print(self.num_lives)
@@ -43,4 +45,4 @@ class Hangman:
 player_1 = Hangman('banana')
 
 player_1.what_went_wrong()
-player_1.ask_for_input()
+#player_1.ask_for_input()
