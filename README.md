@@ -3,6 +3,7 @@
 ## Table of contents 
 1. Overview
 2. Methods
+   
    a. Init
    
    b. Find Indexes
