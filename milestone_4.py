@@ -10,6 +10,16 @@ class Hangman:
         self.num_lives = 5
         self.list_of_guesses = []
 
+    def find_indexes(self, guess, random_word):
+        guess_letter_index_list = []
+        while guess in self.random_word:
+            guess_index = self.random_word.index(guess)
+            guess_letter_index_list.append(guess_index)
+            self.random_word[guess_index] = '-'
+        return guess_letter_index_list
+
+        
+
     def check_guess(self, guess):
         guess = guess.lower()
         if guess in self.random_word:
