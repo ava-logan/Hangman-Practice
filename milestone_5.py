@@ -37,6 +37,20 @@ class Hangman:
         else: 
             print('Something went wrong with finding letter in word')
 
+    def win_lose_or_continue(self):
+        while True: 
+            if self.num_lives == 0:
+                print(f'Game over! You have 0 lives left! The word was {self.random_word}')
+                break
+            elif self.num_lives > 0 and self.num_letters == 0:
+                print(f'You have won the game! Congratulations')
+                break 
+            elif self.num_lives > 0 and self.num_letters > 0:
+                print(f'You have {self.num_lives} remaining')
+                print(f'You have so far guessed {self.list_of_guesses}')
+            else:
+                print('Something went wrong with the win/lose/continue method')
+
     def ask_for_input(self):
         while True: 
             guess = input("Please enter a letter ")
@@ -46,10 +60,9 @@ class Hangman:
                 print("You have already tried that letter")
             elif len(guess) == 1 and guess.isalpha() == True:
                 Hangman.check_guess(self, guess)
-                self.num_lives -1     
+                self.num_lives -=1     
                 self.list_of_guesses.append(guess)
-                print(f'You have {self.num_lives} remaining')
-                print(f'You have so far guessed {self.list_of_guesses}')
+                self.num_letters -= len(Hangman.find_indexes(self, guess))
             else: 
                 print('Something went wrong with the input')
     
@@ -61,3 +74,9 @@ class Hangman:
         print(self.num_lives)
         print(self.list_of_guesses) 
 
+def play_game(word_list):
+    word = random.choice(word_list)
+    game = Hangman(word)
+    game.ask_for_input()
+    
+#play_game(word_list)
