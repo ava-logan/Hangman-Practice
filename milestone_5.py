@@ -9,32 +9,32 @@ class Hangman:
         self.num_letters = len(random_word)
         self.num_lives = 5
         self.list_of_guesses = []
+        self.guess_letter_index_list = []
 
     def find_indexes(self, guess):
         print('finding indexes...')
-        guess_letter_index_list = []
         while guess in self.random_word:
             guess_index = self.random_word.index(guess)
-            guess_letter_index_list.append(guess_index)
+            self.guess_letter_index_list.append(guess_index)
             self.random_word[guess_index] = '-'
-        return guess_letter_index_list
 
     def update_hidden_word(self, guess):
         print('revealing the new characters...')
-        for numbers in Hangman.find_indexes(self, guess):
+        for numbers in self.guess_letter_index_list:
             self.word_guessed[numbers] = guess
             print(numbers, self.word_guessed, guess)
 
     def update_num_letters(self, guess):
-        print('Changing hte number of letters left to guess..')
-        numbers = len(Hangman.find_indexes(self, guess))
+        print('Changing the number of letters left to guess..')
+        numbers = len(self.guess_letter_index_list)
         self.num_letters = self.num_letters - numbers
 
     def check_guess(self, guess):
         guess = guess.lower()
         if guess in self.random_word:
             print(f'Good guess! {guess} is in the word')
-            #Hangman.find_indexes(self, guess)
+            self.guess_letter_index_list = []
+            Hangman.find_indexes(self, guess)
             Hangman.update_hidden_word(self, guess)
             Hangman.update_num_letters(self, guess)
         elif guess not in self.random_word:
@@ -84,4 +84,4 @@ def play_game(another_word_list, game_num_lives):
 
 
 
-#play_game(another_word_list, 3)
+play_game(another_word_list, 3)
