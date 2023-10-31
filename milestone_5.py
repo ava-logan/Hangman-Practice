@@ -40,6 +40,7 @@ class Hangman:
             print('Something went wrong with finding letter in word')
 
     def ask_for_input(self):
+        while True:
             guess = input("Please enter a letter ")
             if guess.isalpha() == False or len(guess) != 1:
                 print('Invalid entry, must be a single, alphabetical character')
@@ -48,7 +49,8 @@ class Hangman:
             elif len(guess) == 1 and guess.isalpha() == True:
                 Hangman.check_guess(self, guess)       
                 self.list_of_guesses.append(guess)
-                return self.num_lives, self.num_letters
+                print(f'Lives: {self.num_lives}. Letters guessed: {"".join(self.list_of_guesses)}. Word so far: {self.word_guessed}')
+                break
             else: 
                 print('Something went wrong with the input')
     
@@ -60,22 +62,22 @@ class Hangman:
         print(self.num_lives)
         print(self.list_of_guesses) 
 
-        
-def play_game(another_word_list):
+def play_game(another_word_list, game_num_lives):
     word_selector = random.choice(another_word_list)
-    game = Hangman(word_selector)    
-    while True:
-        Hangman.ask_for_input()
-        if num_lives == 0:
-            print(f'Game over! You have 0 lives left! The word was {self.random_word}')
+    game = Hangman(word_selector)
+    while game.num_lives > -1 or game.num_letters > -1:
+        if game.num_lives == 0:
+            print('Game Over')
             break
-        elif num_lives > 0 and num_letters == 0:
-            print(f'You have won the game! Congratulations')
+        elif game.num_letters == 0 and game.num_lives != 0:
+            print("You win")
             break
-        elif num_lives > 0 and num_letters > 0:
-            print(f'Lives: {self.num_lives}, Word guessed fo far: {self.word_guessed}. Letters guessed: {self.list_of_guesses}')
-        else:
-            print('Something went wrong with the win/lose/continue method')
-        
+        elif game.num_letters > 0 and game.num_lives > 0:
+            game.ask_for_input()
+        else: 
+            print('Something went wrong with the play_game loop')
+            break
 
-play_game(another_word_list)
+
+
+play_game(another_word_list, 3)
