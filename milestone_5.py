@@ -17,7 +17,7 @@ class Hangman:
             self.guess_letter_index_list.append(guess_index)
             self.random_word[guess_index] = '-'
 
-    def update_hidden_word(self, guess):
+    def update_word_guessed(self, guess):
         for numbers in self.guess_letter_index_list:
             self.word_guessed[numbers] = guess
 
@@ -31,7 +31,7 @@ class Hangman:
             print(f'Good guess! {guess} is in the word')
             self.guess_letter_index_list = []
             Hangman.find_indexes(self, guess)
-            Hangman.update_hidden_word(self, guess)
+            Hangman.update_word_guessed(self, guess)
             Hangman.update_num_letters(self, guess)
         elif guess not in self.random_word:
             print(f'Sorry {guess} is not in the word')
