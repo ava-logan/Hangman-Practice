@@ -39,21 +39,6 @@ class Hangman:
         else: 
             print('Something went wrong with finding letter in word')
 
-    def win_lose_or_continue(self):
-        if self.num_lives == 0:
-            print(f'Game over! You have 0 lives left! The word was {self.random_word}')
-            return "game_over"
-        elif self.num_lives > 0 and self.num_letters == 0:
-            print(f'You have won the game! Congratulations')
-            return "game_over"
-        elif self.num_lives > 0 and self.num_letters > 0:
-            Hangman.ask_for_input(self)
-            print(f'You have {self.num_lives} remaining')
-            print(f'Lives: {self.num_lives}, Word guessed fo far: {self.word_guessed}. Letters guessed: {self.list_of_guesses}')
-            return True
-        else:
-            print('Something went wrong with the win/lose/continue method')
-
     def ask_for_input(self):
             guess = input("Please enter a letter ")
             if guess.isalpha() == False or len(guess) != 1:
@@ -63,6 +48,7 @@ class Hangman:
             elif len(guess) == 1 and guess.isalpha() == True:
                 Hangman.check_guess(self, guess)       
                 self.list_of_guesses.append(guess)
+                return self.num_lives, self.num_letters
             else: 
                 print('Something went wrong with the input')
     
@@ -74,12 +60,22 @@ class Hangman:
         print(self.num_lives)
         print(self.list_of_guesses) 
 
+        
 def play_game(another_word_list):
     word_selector = random.choice(another_word_list)
-    game = Hangman(word_selector)
+    game = Hangman(word_selector)    
     while True:
-        game.win_lose_or_continue()
-        if game.win_lose_or_continue == "game over":
+        Hangman.ask_for_input()
+        if num_lives == 0:
+            print(f'Game over! You have 0 lives left! The word was {self.random_word}')
             break
+        elif num_lives > 0 and num_letters == 0:
+            print(f'You have won the game! Congratulations')
+            break
+        elif num_lives > 0 and num_letters > 0:
+            print(f'Lives: {self.num_lives}, Word guessed fo far: {self.word_guessed}. Letters guessed: {self.list_of_guesses}')
+        else:
+            print('Something went wrong with the win/lose/continue method')
+        
 
-#play_game(another_word_list)
+play_game(another_word_list)
